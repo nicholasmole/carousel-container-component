@@ -1,0 +1,61 @@
+@import './vars.scss';
+
+.__CCC_homeourproducts_container {
+	background: $white;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, .3);
+
+	.__CCC_carousel_wrapper_buttoncontainer {
+		background: $white;
+	}
+	
+	.__CCC_CarouselSlot, .__CCC_CarouselLess {
+		>div {
+			display: flex;
+			text-align: center;
+			margin: 0 auto;
+			height: 216px;
+			padding: 32px 0px;
+		}
+	}
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+}
+.__CCC_homeourproducts_alink_container {
+	display: inline-block;
+	margin: 0 auto;
+	width: 60%;
+	&:hover ~{
+		>div {
+			text-decoration: none;
+		}
+		
+
+	}
+}
+.__CCC_OurProductsTitle_container {
+	h3 {
+		text-align: center !important;
+    font-family: $mlHeaderFont;
+    font-size: 32px;
+		font-weight: 600;
+		margin: 20px 0px;
+		color: $mlDarkFont;
+	}
+	div {
+		margin-bottom: 16px;
+	}
+}
+@media screen and (max-width: 575px){
+	.__CCC_OurProductsTitle_container {
+		margin-top: 80px;
+	}
+	.__CCC_OurProductsSubTitle {
+		padding: 0px 64px;
+    font-size: 16px;
+    margin-left: -32px;
+	}
+}
+		
+		
