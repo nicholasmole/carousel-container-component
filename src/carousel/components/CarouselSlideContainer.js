@@ -31,11 +31,7 @@ export const CarouselSlideContainer = ({
 	let translateXPosition = getTranslateXPosition({slidePosition});
 
 	let flexDirection = getFlexDirection({slidePosition, fullCircle});
-	console.log('transitionType');
-	console.log(transitionType);
-	console.log(translateXPosition);
-	console.log(flexDirection);
-	console.log(children);
+
 	return (
 		<div
 			className={`__CCC_CarouselContainer`}

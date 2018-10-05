@@ -18,5 +18,3 @@ Object.defineProperty(exports, 'CarouselContainerComponent', {
 exports.modules = carousel;
 
 exports.default = carousel;
-
-// exports.default = function() {console.log('h')} 
