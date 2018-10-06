@@ -11,10 +11,10 @@ require('./build/src/styles.css');
 Object.defineProperty(exports, 'CarouselContainerComponent', {
   enumerable: true,
   get: function get() {
-    return carousel;
+    return carousel.CarouselContainerComponent;
   }
 });
 
-exports.modules = carousel;
+exports.modules = carousel.CarouselContainerComponent;
 
-exports.default = carousel;
+exports.default = carousel.CarouselContainerComponent;
