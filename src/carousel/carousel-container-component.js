@@ -13,7 +13,7 @@ import {
 	getOrderNumberForCarouselItem
 } from './helpers';
 
-import styles from './styles/carousel.scss';
+import './styles/carousel.scss';
 
 /**
  * CarouselContainerComponent carousel container that display children as slides
@@ -29,6 +29,7 @@ export class CarouselContainerComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			sliderReady: false,
 			position: 0,
 			direction: 'next',
 			sliding: false,
@@ -42,6 +43,8 @@ export class CarouselContainerComponent extends Component {
 		this.fullCircleSlidingForward = this.fullCircleSlidingForward.bind(this);
 		this.normalSlidingAction = this.normalSlidingAction.bind(this);
 		this.clickSlide = this.clickSlide.bind(this);
+		this.handleSwipeRight = this.handleSwipeRight.bind(this);
+		this.handleSwipeLeft = this.handleSwipeLeft.bind(this);
 	}
 
 	static propTypes = {
@@ -57,7 +60,6 @@ export class CarouselContainerComponent extends Component {
 	 * @param {boolean} sliding is slider moving
 	 */
 	nextSlide = () => {
-	
 		const {
 			position,
 			sliding
@@ -258,15 +260,25 @@ export class CarouselContainerComponent extends Component {
 	}
 
 	/**
-	 * handleSwipe - handle carousel movement by touch, and swipe
+	 * handleSwipeRight - handle carousel movement by touch, and swipe
 	 */
-	handleSwipe = WaitToCall(isNext => {
-		if (isNext) {
+	handleSwipeLeft() {
+		WaitToCall(() => {
+			if (!this.state.sliderReady) return;
+
 			this.nextSlide();
-		} else {
+
+		}, 150, {trailing: false});
+	}
+
+	handleSwipeRight() {
+		WaitToCall(() => {
+			if (!this.state.sliderReady) return;
+
 			this.prevSlide();
-		}
-	}, 500, {trailing: false});
+
+		}, 150, {trailing: false});
+	}
 
 	componentDidMount() {
 		const {
@@ -275,6 +287,9 @@ export class CarouselContainerComponent extends Component {
 		const {
 			children
 		} = this.props;
+		this.setState({
+			sliderReady: true
+		})
 		if (currentSize !== children.length) {
 			this.childrenGetPopulatedResetToZero(children.length);
 		}
@@ -309,8 +324,8 @@ export class CarouselContainerComponent extends Component {
 
 		return (
 			<Swipeable
-				onSwipingLeft={() => this.handleSwipe(true)}
-				onSwipingRight={() => this.handleSwipe()}
+				onSwipingLeft={() => this.handleSwipeLeft()}
+				onSwipingRight={() => this.handleSwipeRight()}
 			>
 				<CarouselWrapper>
 					<CarouselSlideContainer

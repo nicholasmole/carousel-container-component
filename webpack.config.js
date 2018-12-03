@@ -36,6 +36,27 @@ module.exports = {
         }
       },
       {
+				test: /\.css$/,
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								modules: true,
+								camelCase: true,
+								minimize: true,
+								importLoaders: 1,
+								localIdentName: '[local]',
+								discardComments: {
+									removeAll: true
+								}
+							}
+						}
+					]
+				})
+			},
+      {
 				test: /\.scss|sass$/,
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
@@ -53,6 +74,9 @@ module.exports = {
 									removeAll: true
 								}
 							}
+            },
+            {
+							loader: 'postcss-loader'
 						},
 						{
 							loader: 'sass-loader' // compiles Sass to CSS
